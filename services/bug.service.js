@@ -37,6 +37,7 @@ function save(bugToSave) {
         bugToSave._id = makeId()
         bugs.push(bugToSave)
     }
+    console.log(bugs)
     return _savebugsToFile()
         .then(() => bugToSave)
 }
