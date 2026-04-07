@@ -17,14 +17,15 @@
   "directories": {
     "lib": "lib"
   },
-"scripts": {
-  "start": "node server.js",
-  "dev": "nodemon --ignore \"./data\" server.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon --ignore \"./data\" server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.7",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "follow-redirects": "^1.15.11"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

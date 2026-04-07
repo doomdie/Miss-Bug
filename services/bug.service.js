@@ -1,8 +1,8 @@
 import { makeId, readJsonFile, writeJsonFile } from './util.service.js'
 const PATH = './data/bug.json'
-const cars = readJsonFile(PATH)
-
-export const carService = {
+const bugs = readJsonFile(PATH)
+console.log(bugs)
+export const bugService = {
     query,
     get,
     remove,
@@ -10,37 +10,37 @@ export const carService = {
 }
 
 function query() {
-    return Promise.resolve(cars)
+    return Promise.resolve(bugs)
 }
 
-function get(carId) {
-    const car = cars.find(car => car._id === carId)
-    if (!car) return Promise.reject(`Cant find car with id ${carId}`)
+function get(bugId) {
+    const bug = bugs.find(bug => bug._id === bugId)
+    if (!bug) return Promise.reject(`Cant find bug with id ${bugId}`)
         
-    return Promise.resolve(car)
+    return Promise.resolve(bug)
 }
 
-function remove(carId) {
-    const idx = cars.findIndex(car => car._id === carId)
-    if (idx === -1) return Promise.reject(`Can't find car with id ${carId}`)
+function remove(bugId) {
+    const idx = bugs.findIndex(bug => bug._id === bugId)
+    if (idx === -1) return Promise.reject(`Can't find bug with id ${bugId}`)
 
-    cars.splice(idx, 1)
+    bugs.splice(idx, 1)
 
-    return _saveCarsToFile()
+    return _savebugsToFile()
 }
 
-function save(carToSave) {
-    if (carToSave._id) {
-        const idx = cars.findIndex(car => car._id === carToSave._id)
-        cars[idx] = { ...cars[idx], ...carToSave }
+function save(bugToSave) {
+    if (bugToSave._id) {
+        const idx = bugs.findIndex(bug => bug._id === bugToSave._id)
+        bugs[idx] = { ...bugs[idx], ...bugToSave }
     } else {
-        carToSave._id = makeId()
-        cars.push(carToSave)
+        bugToSave._id = makeId()
+        bugs.push(bugToSave)
     }
-    return _saveCarsToFile()
-        .then(() => carToSave)
+    return _savebugsToFile()
+        .then(() => bugToSave)
 }
 
-function _saveCarsToFile() {
-    return writeJsonFile(PATH, cars)
+function _savebugsToFile() {
+    return writeJsonFile(PATH, bugs)
 }
