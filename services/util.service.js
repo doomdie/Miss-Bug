@@ -1,40 +1,17 @@
-import fs from 'fs'
-import fr from 'follow-redirects'
-
-const { http, https } = fr
 export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
     loadFromStorage,
-    saveToStorage,
-    readJsonFile,
-    writeJsonFile
-}
-export function readJsonFile(path) {
-    const str = fs.readFileSync(path, 'utf8')
-    const json = JSON.parse(str)
-    return json
+    saveToStorage
 }
 
-export function writeJsonFile(path, data) {
-    return new Promise((resolve, reject) => {
-        const jsonData = JSON.stringify(data, null, 2)
-
-        fs.writeFile(path, jsonData, err => {
-            if (err) return reject(err)
-            resolve()
-        })
-    })
-}
 export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-
     return txt
 }
 
@@ -51,9 +28,8 @@ export function makeLorem(size = 100) {
 export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
+    return Math.floor(Math.random() * (max - min + 1)) + min 
 }
-
 
 export function loadFromStorage(keyDB) {
     const val = localStorage.getItem(keyDB)
