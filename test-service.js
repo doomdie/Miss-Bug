@@ -1,5 +1,4 @@
-import { bugService } from './services/bug.service.js'
-
+import { bugService } from './public/services/bug.service.js'
 export async function runTest() {
     try {
         console.log('--- Step 1: Testing Query ---')
